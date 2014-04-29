@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h1= title
+  if (data.keepers)
+    p Imported #{data.keepers} keeper records
+  p Imported #{data.hitters} hitters
+  p Imported #{data.pitchers} pitchers
+  p Inflation Calculated at #{data.rate}

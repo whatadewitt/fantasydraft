@@ -1,0 +1,184 @@
+extends layout
+
+block content
+  script(id="playerModal.html", type='text/ng-template')
+    <div class="modal-header">
+    <h3>{{player.name}} - {{player.team}}</h3>
+    </div>
+    <div class="modal-body">
+    <div class="row">
+    <div class="col-sm-3">
+    <label for="price">Drafted Price:</label>
+    </div>
+    <div class="col-sm-9">
+    <input type="text" name="price" class="form-control" maxlength="2" ng-model="player.price">
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-sm-3">
+    <label for="notes">Player Notes:</label>
+    </div>
+    <div class="col-sm-9">
+    <textarea name="notes" class="form-control" ng-model="player.notes"></textarea>
+    </div>
+    </div>
+    </div>
+    <div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">OK</button>
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+
+  .container
+    .row
+      .col-sm-6
+        h1= title
+      .col-sm-6.input-container
+        input.form-control.filter(type="text", placeholder="Filter Players", ng-model="playerName.name")
+
+    .row
+      .col-sm-3
+        //- div(playerlist, playerlist-title="First Basemen", playerlist-pos="1B", playerlist-count="40")
+        h4 First Basemen
+        ul
+          li(ng-click="openModal(player)",
+            ng-repeat="player in data | filter: {position: '1B'} | limitTo:40 | filter: playerName | filter: playerName",
+            ng-class="{'keeper': player.keeper, 'drafted': player.drafted }", ng-class-odd="'odd'")
+            .row(tooltip-placement="top", tooltip="{{player.notes}}")
+              .col-sm-1
+                span {{$index + 1}}.
+              .col-sm-3
+                span(ng-hide="player.cost < 0") ${{player.cost}} ({{player.drafted ? player.price : player.inflated_cost}})
+              .col-sm-6
+                span {{player.name}}
+              .col-sm-2
+                span {{player.team}}
+                i.fa.fa-asterisk(ng-hide="!player.notes")
+      .col-sm-3
+        h4 Third Basemen
+        ul
+          li(ng-click="openModal(player)",
+            ng-repeat="player in data | filter: {position: '3B'} | limitTo:40 | filter: playerName | filter: playerName",
+            ng-class="{'keeper': player.keeper, 'drafted': player.drafted }", ng-class-odd="'odd'")
+            .row(tooltip-placement="top", tooltip="{{player.notes}}")
+              .col-sm-1
+                span {{$index + 1}}.
+              .col-sm-3
+                span(ng-hide="player.cost < 0") ${{player.cost}} ({{player.drafted ? player.price : player.inflated_cost}})
+              .col-sm-6
+                span {{player.name}}
+              .col-sm-2
+                span {{player.team}}
+                i.fa.fa-asterisk(ng-hide="!player.notes")
+      .col-sm-3.pull-right
+        h4 Starting Pitchers
+        ul
+          ul
+          li(ng-click="openModal(player)",
+            ng-repeat="player in data | filter: {position: 'SP'} | limitTo:85 | filter: playerName | filter: playerName",
+            ng-class="{'keeper': player.keeper, 'drafted': player.drafted }", ng-class-odd="'odd'")
+            .row(tooltip-placement="top", tooltip="{{player.notes}}")
+              .col-sm-1
+                span {{$index + 1}}.
+              .col-sm-3
+                span(ng-hide="player.cost < 0") ${{player.cost}} ({{player.drafted ? player.price : player.inflated_cost}})
+              .col-sm-6
+                span {{player.name}}
+              .col-sm-2
+                span {{player.team}}
+                i.fa.fa-asterisk(ng-hide="!player.notes")
+      .col-sm-3.pull-right
+        h4 Outfielders
+        ul
+          li(ng-click="openModal(player)",
+            ng-repeat="player in data | filter: {position: 'OF'} | limitTo:85 | filter: playerName | filter: playerName",
+            ng-class="{'keeper': player.keeper, 'drafted': player.drafted }", ng-class-odd="'odd'")
+            .row(tooltip-placement="top", tooltip="{{player.notes}}")
+              .col-sm-1
+                span {{$index + 1}}.
+              .col-sm-3
+                span(ng-hide="player.cost < 0") ${{player.cost}} ({{player.drafted ? player.price : player.inflated_cost}})
+              .col-sm-6
+                span {{player.name}}
+              .col-sm-2
+                span {{player.team}}
+                i.fa.fa-asterisk(ng-hide="!player.notes")
+      .col-sm-3
+        h4 Second Basemen
+        ul
+          li(ng-click="openModal(player)",
+            ng-repeat="player in data | filter: {position: '2B'} | limitTo:40 | filter: playerName | filter: playerName",
+            ng-class="{'keeper': player.keeper, 'drafted': player.drafted }", ng-class-odd="'odd'")
+            .row(tooltip-placement="top", tooltip="{{player.notes}}")
+              .col-sm-1
+                span {{$index + 1}}.
+              .col-sm-3
+                span(ng-hide="player.cost < 0") ${{player.cost}} ({{player.drafted ? player.price : player.inflated_cost}})
+              .col-sm-6
+                span {{player.name}}
+              .col-sm-2
+                span {{player.team}}
+                i.fa.fa-asterisk(ng-hide="!player.notes")
+      .col-sm-3
+        h4 Shortstops
+        ul
+          li(ng-click="openModal(player)",
+            ng-repeat="player in data | filter: {position: 'SS'} | limitTo:40 | filter: playerName | filter: playerName",
+            ng-class="{'keeper': player.keeper, 'drafted': player.drafted }", ng-class-odd="'odd'")
+            .row(tooltip-placement="top", tooltip="{{player.notes}}")
+              .col-sm-1
+                span {{$index + 1}}.
+              .col-sm-3
+                span(ng-hide="player.cost < 0") ${{player.cost}} ({{player.drafted ? player.price : player.inflated_cost}})
+              .col-sm-6
+                span {{player.name}}
+              .col-sm-2
+                span {{player.team}}
+                i.fa.fa-asterisk(ng-hide="!player.notes")
+      .col-sm-3
+        h4 Catchers
+        ul
+          li(ng-click="openModal(player)",
+            ng-repeat="player in data | filter: {position: 'C'} | limitTo:40 | filter: playerName | filter: playerName",
+            ng-class="{'keeper': player.keeper, 'drafted': player.drafted }", ng-class-odd="'odd'")
+            .row(tooltip-placement="top", tooltip="{{player.notes}}")
+              .col-sm-1
+                span {{$index + 1}}.
+              .col-sm-3
+                span(ng-hide="player.cost < 0") ${{player.cost}} ({{player.drafted ? player.price : player.inflated_cost}})
+              .col-sm-6
+                span {{player.name}}
+              .col-sm-2
+                span {{player.team}}
+                i.fa.fa-asterisk(ng-hide="!player.notes")
+      .col-sm-3
+        h4 Designated Hitters
+        ul
+          li(ng-click="openModal(player)",
+            ng-repeat="player in data | filter: {position: 'DH'} | limitTo:40 | filter: playerName | filter: playerName",
+            ng-class="{'keeper': player.keeper, 'drafted': player.drafted }", ng-class-odd="'odd'")
+            .row(tooltip-placement="top", tooltip="{{player.notes}}")
+              .col-sm-1
+                span {{$index + 1}}.
+              .col-sm-3
+                span(ng-hide="player.cost < 0") ${{player.cost}} ({{player.drafted ? player.price : player.inflated_cost}})
+              .col-sm-6
+                span {{player.name}}
+              .col-sm-2
+                span {{player.team}}
+                i.fa.fa-asterisk(ng-hide="!player.notes")
+      .col-sm-3.pull-right
+        h4 Relief Pitchers
+        ul
+          li(ng-click="openModal(player)",
+            ng-repeat="player in data | filter: {position: 'RP'} | limitTo:40 | filter: playerName | filter: playerName",
+            ng-class="{'keeper': player.keeper, 'drafted': player.drafted }", ng-class-odd="'odd'")
+            .row(tooltip-placement="top", tooltip="{{player.notes}}")
+              .col-sm-1
+                span {{$index + 1}}.
+              .col-sm-3
+                span(ng-hide="player.cost < 0") ${{player.cost}} ({{player.drafted ? player.price : player.inflated_cost}})
+              .col-sm-6
+                span {{player.name}}
+              .col-sm-2
+                span {{player.team}}
+                i.fa.fa-asterisk(ng-hide="!player.notes")

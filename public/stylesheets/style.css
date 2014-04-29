@@ -1,0 +1,86 @@
+body {
+  padding: 50px;
+  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+}
+
+a {
+  color: #00B7FF;
+}
+
+ul {
+  padding: 0;
+}
+
+ul li {
+  list-style: none;
+}
+
+ul li .row {
+  padding: 5px 0;
+  margin: 0 -5px;
+}
+
+ul li.odd .row {
+  background: #eee;
+}
+
+ul li.drafted span {
+  text-decoration: line-through;
+}
+
+ul li.keeper span {
+  color: red;
+  text-decoration: line-through;
+}
+
+ul li .row div {
+  padding: 0 !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+.input-container {
+  line-height: 36px;
+  margin: 25px 0 10px;
+}
+
+.input-container input {
+  width: 100%;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+}
+
+.fa-asterisk {
+  color: #00aa00;
+  margin-left: 5px;
+}
+
+textarea {
+  resize: none;
+  min-height: 100px;
+}
+
+.modal-body label {
+  line-height: 34px;
+}
+
+.modal-body input {
+  width: 45px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.modal-body .row {
+  margin-bottom: 10px;
+}
